@@ -6,5 +6,7 @@ module.exports = {
         dev: '',
         //  根据项目名修改
         pro: '',
-    }
+    },
+    co: 'com.lm.springbootstandardproject'
+
 }
