@@ -16,7 +16,7 @@ public abstract class BaseController {
      *
      */
     protected String getToken() {
-        return request.getHeader("token") == null ? "" : request.getHeader("token").toString();
+        return request.getHeader("token") == null ? "" : request.getHeader("token");
     }
 
 
