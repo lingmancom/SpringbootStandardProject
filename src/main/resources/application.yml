@@ -1,0 +1,99 @@
+lz:
+  host: lm
+crawl:
+  url: http://26.42.165.94:3199
+app:
+  project: lib-api
+  environment: prod
+  useApiLog: true
+  userSwagger: true
+  webPortalRoot: http://${lz.host}
+  apiRoot: http://${lz.host}:11003
+  host: ${lz.host}
+  test: test-application
+  image_link_cover: http://${lz.host}:9000/cai/static/default/defualt-app.png
+  resource_default_cover: http://${lz.host}:9000/cai/static/default/default-album.png
+  image_resource_new: http://${lz.host}:9000/cai/static/default/????.png
+  image_ebook_cover: http://${lz.host}:9000/cai/static/default/eboo-cover.jpg
+
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+spring:
+  #
+  jackson:
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 5GB
+      max-request-size: 5GB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    #按需求修改
+    url:
+    username:
+    password:
+    hikari:
+      connection-timeout: 30000
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 600000
+      pool-name: DataSourceHikariCP
+      max-lifetime: 1800000
+      connection-test-query: select 1
+  data:
+    redis:
+      repositories:
+        enabled: false
+      database: 1
+      host: lm
+      port: 6379
+      password:
+      lettuce:
+        lettuce:
+          pool:
+            max-active: 8
+            max-idle: 8
+            max-wait: -1
+            min-idle: 0
+    elasticsearch:
+      uris: elasticsearch:9200
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.lm.park.model
+  configuration:
+    map-underscore-to-camel-case: false
+    call-setters-on-nulls: true
+swagger:
+  enabled: true
+
+minio:
+  endpoint:
+  accessKey:
+  secretKey:
+  bucketName:
+
+ownCloud:
+  admin_user:
+  admin_password:
+  create_user:
+  update_password:
+
+api-log-config:
+  project: lib-api
+  log_endpoint: cn-shanghai.log.aliyuncs.com
+  log_accessKeyId:
+  log_accessKeySecret:
+
+enterprise-wechat:
+  robot-url:
+
