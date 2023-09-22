@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.*;
 
+/**
+ * @author jacky
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public R validateException(MethodArgumentNotValidException e) {
+    public R<Object> validateException(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         List<String> list = new ArrayList<>();
         for (FieldError error : fieldErrors) {
@@ -33,7 +36,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
-    public R exceptionHandle(final HttpServletRequest request, Exception e) {
+    public R<Object> exceptionHandle(final HttpServletRequest request, Exception e) {
         log.error("捕获异常：", e);
 
         Map<String, Object> map = new HashMap<>();
