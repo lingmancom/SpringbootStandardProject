@@ -2,7 +2,7 @@ package com.lm.springbootstandardproject.core.config;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lm.springbootstandardproject.core.common.R;
+import com.lm.tools.R;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +59,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
 
     private void send401ToResponse(HttpServletResponse response, String message) throws Exception {
-        response.setContentType("application/json");
+        response.setContentType("application/json;charset=UTF-8");
 
         // 创建错误消息对象
         R errorMessage = R.errorNoAuth();

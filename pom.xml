@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.lm</groupId>
             <artifactId>tools</artifactId>
-            <version>1.0.79</version>
+            <version>1.0.82</version>
         </dependency>
         <!--     redis配置       -->
         <dependency>

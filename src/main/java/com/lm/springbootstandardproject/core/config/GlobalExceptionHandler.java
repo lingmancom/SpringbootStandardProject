@@ -1,16 +1,21 @@
 package com.lm.springbootstandardproject.core.config;
 
 
-import com.lm.springbootstandardproject.core.common.CustomException;
-import com.lm.springbootstandardproject.core.common.R;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lm.tools.DemonConstants;
+import com.lm.tools.DemonErrorCode;
+import com.lm.tools.R;
+import com.lm.tools.exception.DemonCodeException;
+import com.lm.tools.exception.DemonMessageException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @RestControllerAdvice
@@ -28,20 +33,39 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
-    public R exceptionHandle(Exception e) {
+    public R exceptionHandle(final HttpServletRequest request, Exception e) {
         log.error("捕获异常：", e);
-        return R.error(e.getMessage());
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("message", e.getMessage());
+        map.put("stackTrace", Arrays.toString(e.getStackTrace()));
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonStr = objectMapper.writeValueAsString(map);
+            request.setAttribute(DemonConstants.Log.exceptionInfo, jsonStr);
+        } catch (JsonProcessingException ee) {
+            ee.printStackTrace();
+        }
+
+
         // 是否是正式环境
-//        if (true) {
-//            return R.systemError("系统错误");
-//        } else {
-//            return R.error(e.getMessage());
-//        }
+        if (Objects.equals("prod", System.getProperty("spring.profiles.active"))) {
+            return R.systemError("系统错误");
+        }else {
+            return R.error(e.getMessage());
+        }
     }
 
-    @ExceptionHandler(CustomException.class)
-    public R exceptionHandler(CustomException ex) {
+    @ExceptionHandler(DemonMessageException.class)
+    public R<Object> exceptionHandler(DemonMessageException ex) {
         log.error(ex.getMessage());
         return R.error(ex.getMessage());
+    }
+
+    @ExceptionHandler(DemonCodeException.class)
+    public R<Object> exceptionHandler(DemonErrorCode ex) {
+        log.error(ex.getMessage());
+        return R.errorCode(ex);
     }
 }

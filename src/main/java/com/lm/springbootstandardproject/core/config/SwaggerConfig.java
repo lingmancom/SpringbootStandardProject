@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
     private static final String headerName = "Token";//请求头名称
-    private static final String basePackage = "com.dev.lib";//需要扫描api路径，修改成自己controller文件的路径
 
     @Bean
     public OpenAPI openApi() {
