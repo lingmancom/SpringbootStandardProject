@@ -1,7 +1,0 @@
-package com.lm.SpringBootProject.core.common;
-
-public class CustomException extends RuntimeException {
-    public CustomException(String message) {
-        super(message);
-    }
-}

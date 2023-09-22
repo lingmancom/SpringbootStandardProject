@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lm</groupId>
-    <artifactId>SpringBootProject</artifactId>
+    <artifactId>springbootstandardproject</artifactId>
     <version>1.0.0</version>
-    <name>SpringBootProject</name>
-    <description>SpringBootProject</description>
+    <name>springbootstandardproject</name>
+    <description>springbootstandardproject</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
