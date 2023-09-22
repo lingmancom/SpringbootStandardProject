@@ -31,7 +31,7 @@ public class AppApplication {
         DemonProjectConfig.log_accessKeySecret = apiLogConfig.getLog_accessKeySecret();
         DemonProjectConfig.environment = ENV.valueOf(appConfig.getEnvironment());
         System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/swagger-ui/index.html");
-        var ss = appConfig.getTest();
+
     }
     @Bean
     public RestTemplate restTemplate() {
