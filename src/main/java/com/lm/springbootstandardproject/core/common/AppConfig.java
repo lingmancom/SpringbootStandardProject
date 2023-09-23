@@ -9,25 +9,12 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app")
 public class AppConfig {
 
-    @Schema(description = "项目名称")
-    @Value("${app.project}")
-    private String project;
 
-    @Schema(description = "项目环境")
-    @Value("${app.environment}")
-    private String environment;
 
     @Schema(description = "项目端口")
     @Value("${server.port}")
     private String port;
 
-    @Schema(description = "是否使用接口日志")
-    @Value("${app.useApiLog}")
-    private Boolean useApiLog;
-
-    @Schema(description = "是否使用OpenApi")
-    @Value("${app.userSwagger}")
-    private Boolean userSwagger;
 
 
     @Schema(description = "测试")

@@ -1,7 +1,7 @@
 package com.lm.springbootstandardproject;
 
-import com.lm.springbootstandardproject.core.common.ApiLogConfig;
 import com.lm.springbootstandardproject.core.common.AppConfig;
+import com.lm.springbootstandardproject.core.common.LmConfig;
 import com.lm.tools.DemonProjectConfig;
 import com.lm.tools.ENV;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -22,14 +22,13 @@ public class AppApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(AppApplication.class, args);
-        var apiLogConfig = applicationContext.getBean(ApiLogConfig.class);
+        var lmConfig = applicationContext.getBean(LmConfig.class);
         var appConfig = applicationContext.getBean(AppConfig.class);
-        var env = appConfig.getEnvironment();
-        DemonProjectConfig.project = apiLogConfig.getProject();
-        DemonProjectConfig.log_endpoint = apiLogConfig.getLog_endpoint();
-        DemonProjectConfig.log_accessKeyId = apiLogConfig.getLog_accessKeyId();
-        DemonProjectConfig.log_accessKeySecret = apiLogConfig.getLog_accessKeySecret();
-        DemonProjectConfig.environment = ENV.valueOf(appConfig.getEnvironment());
+        DemonProjectConfig.project = lmConfig.getProject();
+        DemonProjectConfig.log_endpoint = lmConfig.getLogEndpoint();
+        DemonProjectConfig.log_accessKeyId = lmConfig.getLogAccessKeyId();
+        DemonProjectConfig.log_accessKeySecret = lmConfig.getLogAccessKeySecret();
+        DemonProjectConfig.environment = ENV.valueOf(lmConfig.getEnvironment());
         System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/swagger-ui/index.html");
 
     }

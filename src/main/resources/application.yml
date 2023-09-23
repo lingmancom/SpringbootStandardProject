@@ -1,20 +1,17 @@
-lz:
+lm:
   host: lm
-crawl:
-  url: http://26.42.165.94:3199
-app:
-  project: lib-api
+  project: xxx
   environment: prod
-  useApiLog: true
-  userSwagger: true
-  webPortalRoot: http://${lz.host}
-  apiRoot: http://${lz.host}:11003
-  host: ${lz.host}
-  test: test-application
-  image_link_cover: http://${lz.host}:9000/cai/static/default/defualt-app.png
-  resource_default_cover: http://${lz.host}:9000/cai/static/default/default-album.png
-  image_resource_new: http://${lz.host}:9000/cai/static/default/????.png
-  image_ebook_cover: http://${lz.host}:9000/cai/static/default/eboo-cover.jpg
+  user-api-log: true
+  user-swagger: true
+  api-log-config:
+    log-endpoint: cn-shanghai.log.aliyuncs.com
+    log-access-key-id: x
+    log-access-key-secret: x
+
+app:
+  test: test
+
 
 server:
   port: 8080
@@ -23,6 +20,7 @@ server:
       charset: utf-8
       enabled: true
       force: true
+
 spring:
   #
   jackson:
@@ -73,6 +71,7 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
     call-setters-on-nulls: true
+
 swagger:
   enabled: true
 
@@ -82,17 +81,7 @@ minio:
   secretKey:
   bucketName:
 
-ownCloud:
-  admin_user:
-  admin_password:
-  create_user:
-  update_password:
 
-api-log-config:
-  project: lib-api
-  log_endpoint: cn-shanghai.log.aliyuncs.com
-  log_accessKeyId:
-  log_accessKeySecret:
 
 enterprise-wechat:
   robot-url:
