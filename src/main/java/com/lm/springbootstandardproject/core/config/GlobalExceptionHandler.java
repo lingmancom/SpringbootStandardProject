@@ -56,15 +56,19 @@ public class GlobalExceptionHandler {
         if (Objects.equals("prod", System.getProperty("spring.profiles.active"))) {
             return R.systemError("系统错误");
         }else {
-            return R.error(e.getMessage());
+            return R.systemError(e.getMessage());
         }
     }
 
+    /*
+        * 自定义异常，直接弹窗提示
+     */
     @ExceptionHandler(DemonMessageException.class)
     public R<Object> exceptionHandler(DemonMessageException ex) {
         log.error(ex.getMessage());
         return R.error(ex.getMessage());
     }
+
 
     @ExceptionHandler(DemonCodeException.class)
     public R<Object> exceptionHandler(DemonErrorCode ex) {
