@@ -69,7 +69,7 @@ spring:
       matching-strategy: ant_path_matcher
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.lm.park.model
+  type-aliases-package: com.lm.springbootstandardproject.model
   configuration:
     map-underscore-to-camel-case: false
     call-setters-on-nulls: true
