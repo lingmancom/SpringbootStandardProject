@@ -21,11 +21,6 @@ public class LmConfig {
 
     @Value("${lm.api-log-config.log-access-key-secret}")
     private String logAccessKeySecret;
-
-    @Value("${lm.environment}")
-    private String environment;
-
-
 }
 
 

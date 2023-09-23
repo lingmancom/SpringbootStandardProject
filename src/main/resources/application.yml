@@ -1,9 +1,7 @@
 lm:
   host: lm
   project: xxx
-  environment: prod
   user-api-log: true
-  user-swagger: true
   api-log-config:
     log-endpoint: cn-shanghai.log.aliyuncs.com
     log-access-key-id: x
@@ -75,14 +73,5 @@ mybatis-plus:
 swagger:
   enabled: true
 
-minio:
-  endpoint:
-  accessKey:
-  secretKey:
-  bucketName:
 
-
-
-enterprise-wechat:
-  robot-url:
 
