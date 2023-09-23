@@ -49,6 +49,6 @@ nbdist/
 
 ### application-local ###
 
-/application-local.yml
+application-local.yml
 
 
