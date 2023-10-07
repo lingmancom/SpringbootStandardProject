@@ -20,8 +20,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 
 @SpringBootApplication
-@OpenAPIDefinition(servers = {@Server(url = "/", description = "Default Server URL")})
-@MapperScan(basePackages = {"com.lm.springbootstandardproject.models.entity.mapper"})
+@OpenAPIDefinition(servers = { @Server(url = "/", description = "Default Server URL") })
+@MapperScan(basePackages = { "com.lm.springbootstandardproject.models.entity.mapper" })
 @EnableAsync
 public class AppApplication {
 
@@ -33,10 +33,11 @@ public class AppApplication {
         DemonProjectConfig.log_endpoint = lmConfig.getLogEndpoint();
         DemonProjectConfig.log_accessKeyId = lmConfig.getLogAccessKeyId();
         DemonProjectConfig.log_accessKeySecret = lmConfig.getLogAccessKeySecret();
+        DemonProjectConfig.useApiLog = lmConfig.getUseApiLog();
         Environment environment = new AnnotationConfigApplicationContext().getEnvironment();
         // 获取当前活动的 profiles
         var activeProfiles = Arrays.asList(environment.getActiveProfiles());
-        if(activeProfiles.size() > 0) {
+        if (activeProfiles.size() > 0) {
             DemonProjectConfig.environment = ENV.valueOf(activeProfiles.get(0));
         } else {
             DemonProjectConfig.environment = ENV.valueOf("prod");
@@ -44,6 +45,7 @@ public class AppApplication {
         System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/swagger-ui/index.html");
 
     }
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
