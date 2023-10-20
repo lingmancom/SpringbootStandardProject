@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 @OpenAPIDefinition(servers = { @Server(url = "/", description = "Default Server URL") })
 @MapperScan(basePackages = { "com.lm.springbootstandardproject.models.entity.mapper" })
 @EnableAsync
+@ComponentScan(basePackages = {"com.lm"})
 public class AppApplication {
 
     public static void main(String[] args) {
