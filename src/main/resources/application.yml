@@ -1,7 +1,7 @@
 lm:
   host: lm
   project: xxx
-  user-api-log: true
+  user-api-log: false
   api-log-config:
     log-endpoint: cn-shanghai.log.aliyuncs.com
     log-access-key-id: x
@@ -9,7 +9,6 @@ lm:
 
 app:
   test: test
-
 
 server:
   port: 8080
@@ -72,6 +71,3 @@ mybatis-plus:
 
 swagger:
   enabled: true
-
-
-
