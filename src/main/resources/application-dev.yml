@@ -1,3 +1,7 @@
+lm:
+  user-api-log: true
+
+
 app:
   test: test-application-dev
 
