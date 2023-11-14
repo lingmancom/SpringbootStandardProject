@@ -7,6 +7,12 @@ module.exports = {
         //  根据项目名修改
         pro: '',
     },
-    co: 'com.lm.springbootstandardproject'
+    co: 'com.lm.springbootstandardproject',
+    db: {
+        url: 'jdbc:mysql://xx:3305/xx',
+        username: 'xx',
+        password: 'xx',
+        name: 'xx',    // 数据库名
+    },
 
 }
