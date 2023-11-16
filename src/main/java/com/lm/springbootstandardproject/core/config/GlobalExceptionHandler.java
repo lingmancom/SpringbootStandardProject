@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lm.tools.DemonConstants;
 import com.lm.tools.DemonErrorCode;
 import com.lm.tools.R;
-import com.lm.tools.exception.DemonCodeException;
-import com.lm.tools.exception.DemonMessageException;
+import com.lm.tools.exception.DemonExceptionCode;
+import com.lm.tools.exception.DemonExceptionMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.FieldError;
@@ -63,14 +63,14 @@ public class GlobalExceptionHandler {
     /*
         * 自定义异常，直接弹窗提示
      */
-    @ExceptionHandler(DemonMessageException.class)
-    public R<Object> exceptionHandler(DemonMessageException ex) {
+    @ExceptionHandler(DemonExceptionMessage.class)
+    public R<Object> exceptionHandler(DemonExceptionMessage ex) {
         log.error(ex.getMessage());
         return R.error(ex.getMessage());
     }
 
 
-    @ExceptionHandler(DemonCodeException.class)
+    @ExceptionHandler(DemonExceptionCode.class)
     public R<Object> exceptionHandler(DemonErrorCode ex) {
         log.error(ex.getMessage());
         return R.errorCode(ex);
