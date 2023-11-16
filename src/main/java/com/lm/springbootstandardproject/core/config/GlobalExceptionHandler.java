@@ -51,13 +51,7 @@ public class GlobalExceptionHandler {
             ee.printStackTrace();
         }
 
-
-        // 是否是正式环境
-        if (Objects.equals("prod", System.getProperty("spring.profiles.active"))) {
-            return R.systemError("系统错误");
-        }else {
-            return R.systemError(e.getMessage());
-        }
+        return R.systemError("系统错误");
     }
 
     /*
