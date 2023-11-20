@@ -51,14 +51,16 @@ public class SqlStatisticsAop {
         HttpServletRequest request = requestAttributes.getRequest();
         Map<String, Integer> currentMap = SqlStatisticsThreadLocalUtil.getCurrentMap();
         List<Map<String, Object>> sqlList = new LinkedList<>();
-        currentMap.forEach((sql,count )-> sqlList.add(new HashMap<>(2) {{
-            put("sqlCount", count);
-            put("sql", sql);
-        }}));
-        SqlStatisticsThreadLocalUtil.removeCurrentMap();
-        String sqlStatisticsLog = JSONUtil.toJsonStr(sqlList);
-        log.info("runLog: {}", sqlList);
-        request.setAttribute("runLog", sqlStatisticsLog);
+        if(currentMap != null) {
+            currentMap.forEach((sql,count )-> sqlList.add(new HashMap<>(2) {{
+                put("sqlCount", count);
+                put("sql", sql);
+            }}));
+            SqlStatisticsThreadLocalUtil.removeCurrentMap();
+            String sqlStatisticsLog = JSONUtil.toJsonStr(sqlList);
+            log.info("runLog: {}", sqlList);
+            request.setAttribute("runLog", sqlStatisticsLog);
+        }
         return result;
 
     }
