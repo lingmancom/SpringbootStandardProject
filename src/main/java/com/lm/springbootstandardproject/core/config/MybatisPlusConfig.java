@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.lingman.work.dal.mapper")
 public class MybatisPlusConfig {
 
     /**
