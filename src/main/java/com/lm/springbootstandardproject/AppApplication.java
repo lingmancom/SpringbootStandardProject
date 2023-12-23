@@ -44,6 +44,8 @@ public class AppApplication {
         } else {
             DemonProjectConfig.environment = ENV.valueOf("prod");
         }
+
+        DemonProjectConfig.initLogConsumer();
         System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/swagger-ui/index.html");
 
     }
