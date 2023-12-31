@@ -1,14 +1,14 @@
-package com.lm.springbootstandardproject.controllers;
+package com.lm.springbootstandardproject.services;
 
 import com.lm.tools.DemonConstants;
 import com.lm.tools.DemonTools;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 
-
-public abstract class BaseController {
-
+/**
+ * 基础服务类
+ */
+public abstract class BaseService {
 
     @Resource
     protected HttpServletRequest request;
@@ -45,6 +45,5 @@ public abstract class BaseController {
     protected String currentIp() {
         return DemonTools.getIpAddr(request);
     }
-
 
 }
