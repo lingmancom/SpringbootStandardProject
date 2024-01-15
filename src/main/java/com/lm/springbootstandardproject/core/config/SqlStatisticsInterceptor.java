@@ -10,7 +10,7 @@ import org.apache.ibatis.mapping.ParameterMapping;
 
 import java.sql.Connection;
 import java.util.List;
-
+import java.util.regex.Matcher;
 
 /**
  * SQL 统计信息拦截器
@@ -20,7 +20,6 @@ import java.util.List;
  */
 @Slf4j
 public class SqlStatisticsInterceptor implements InnerInterceptor {
-
 
     @Override
     public void beforePrepare(StatementHandler sh, Connection connection, Integer transactionTimeout) {
@@ -59,7 +58,7 @@ public class SqlStatisticsInterceptor implements InnerInterceptor {
                 parameterObj = boundSql.getParameterObject();
             }
 
-            sql = sql.replaceFirst("\\?", "'" + parameterObj + "'");
+            sql = sql.replaceFirst("\\?", Matcher.quoteReplacement("'" + parameterObj.toString() + "'"));
         }
         return sql;
     }
