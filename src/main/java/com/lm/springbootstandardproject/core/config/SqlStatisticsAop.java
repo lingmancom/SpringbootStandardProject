@@ -40,8 +40,8 @@ public class SqlStatisticsAop {
     @Around("execution(* com.lm.springbootstandardproject.controllers..*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        DemonNoLog annotation = getAnnotation(joinPoint, DemonNoLog.class);
-        if (annotation != null) {
+
+        if (isNoLog(joinPoint)) {
             return joinPoint.proceed();
         }
         // 如果不是http请求，直接返回
@@ -70,17 +70,26 @@ public class SqlStatisticsAop {
         return result;
     }
 
-    private <T extends Annotation> T getAnnotation(ProceedingJoinPoint joinPoint, Class<T> annotationClass) {
+    private <T> Boolean isNoLog(ProceedingJoinPoint joinPoint) {
         try {
-            String methodName = joinPoint.getSignature().getName();
-            Class<?> targetClass = joinPoint.getTarget().getClass();
-            Class<?>[] parameterTypes = ((MethodSignature) joinPoint.getSignature()).getParameterTypes();
 
-            Method method = targetClass.getMethod(methodName, parameterTypes);
-            return method.getAnnotation(annotationClass);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+
+            Class<?> targetClass = joinPoint.getTarget().getClass();
+            // 检查类上是否有 @DemonNolog 注解
+            if (targetClass.isAnnotationPresent(DemonNoLog.class)) {
+                return true;
+            }
+            // 检查方法上是否有 @DemonNolog 注解
+            Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
+
+            if (method.isAnnotationPresent(DemonNoLog.class)) {
+                return true;
+            }
+
+            return false;
+        }catch (Exception e) {
+            return false;
         }
-        return null;
+
     }
 }
