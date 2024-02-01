@@ -1,7 +1,7 @@
 lm:
   host: lm
   project: xxx
-  user-api-log: true
+  user-api-log: false
 
 app:
   test: test
