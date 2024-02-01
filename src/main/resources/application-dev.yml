@@ -1,5 +1,5 @@
 lm:
-  user-api-log: true
+  user-api-log: false
 
 
 app:

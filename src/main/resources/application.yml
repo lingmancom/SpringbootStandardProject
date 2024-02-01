@@ -2,10 +2,6 @@ lm:
   host: lm
   project: xxx
   user-api-log: false
-  api-log-config:
-    log-endpoint: cn-shanghai.log.aliyuncs.com
-    log-access-key-id: x
-    log-access-key-secret: x
 
 app:
   test: test

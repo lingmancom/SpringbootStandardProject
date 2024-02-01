@@ -12,15 +12,6 @@ public class LmConfig {
 
     @Value("${lm.user-api-log}")
     private Boolean useApiLog;
-
-    @Value("${lm.api-log-config.log-endpoint}")
-    private String logEndpoint;
-
-    @Value("${lm.api-log-config.log-access-key-id}")
-    private String logAccessKeyId;
-
-    @Value("${lm.api-log-config.log-access-key-secret}")
-    private String logAccessKeySecret;
 }
 
 

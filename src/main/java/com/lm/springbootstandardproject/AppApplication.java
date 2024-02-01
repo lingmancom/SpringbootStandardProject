@@ -32,9 +32,6 @@ public class AppApplication {
         var lmConfig = applicationContext.getBean(LmConfig.class);
         var appConfig = applicationContext.getBean(AppConfig.class);
         DemonProjectConfig.project = lmConfig.getProject();
-        DemonProjectConfig.log_endpoint = lmConfig.getLogEndpoint();
-        DemonProjectConfig.log_accessKeyId = lmConfig.getLogAccessKeyId();
-        DemonProjectConfig.log_accessKeySecret = lmConfig.getLogAccessKeySecret();
         DemonProjectConfig.useApiLog = lmConfig.getUseApiLog();
         Environment environment = new AnnotationConfigApplicationContext().getEnvironment();
         // 获取当前活动的 profiles
