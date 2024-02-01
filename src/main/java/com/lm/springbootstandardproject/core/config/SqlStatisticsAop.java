@@ -65,7 +65,7 @@ public class SqlStatisticsAop {
         }}));
         SqlStatisticsThreadLocalUtil.removeCurrentMap();
         String sqlStatisticsLog = JSONUtil.toJsonStr(sqlList);
-        log.info("runLog: {}", sqlList);
+       // log.info("runLog: {}", sqlList);
         request.setAttribute("runLog", sqlStatisticsLog);
         return result;
     }

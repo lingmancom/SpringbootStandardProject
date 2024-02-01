@@ -27,6 +27,7 @@ import java.util.Arrays;
 @ComponentScan(basePackages = {"com.lm"})
 public class AppApplication {
 
+
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(AppApplication.class, args);
         var lmConfig = applicationContext.getBean(LmConfig.class);
