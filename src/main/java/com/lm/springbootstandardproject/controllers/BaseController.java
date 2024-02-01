@@ -19,7 +19,7 @@ public abstract class BaseController {
      *
      */
 
-    protected String currentToken() {
+    protected String getToken() {
         return request.getHeader("token") == null ? "" : request.getHeader("token");
     }
 
@@ -27,14 +27,14 @@ public abstract class BaseController {
     /**
      * 获取请求中的userId
      */
-    protected String currentUserId() {
+    protected String getUserId() {
         return request.getAttribute(DemonConstants.Log.SenderId) == null ? "" : request.getAttribute(DemonConstants.Log.SenderId).toString();
     }
 
     /**
      * 获取请求中的userAgent
      */
-    protected String currentUserAgent() {
+    protected String getUserAgent() {
         return request.getHeader("User-Agent");
     }
 
@@ -42,7 +42,7 @@ public abstract class BaseController {
     /**
      * 获取请求中的ip
      */
-    protected String currentIp() {
+    protected String getIp() {
         return DemonTools.getIpAddr(request);
     }
 

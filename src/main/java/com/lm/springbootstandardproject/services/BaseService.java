@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * 基础服务类
  */
-public abstract class BaseService {
+public  abstract class BaseService {
 
     @Resource
     protected HttpServletRequest request;
@@ -19,7 +19,7 @@ public abstract class BaseService {
      *
      */
 
-    protected String currentToken() {
+    protected String getToken() {
         return request.getHeader("token") == null ? "" : request.getHeader("token");
     }
 
@@ -27,14 +27,14 @@ public abstract class BaseService {
     /**
      * 获取请求中的userId
      */
-    protected String currentUserId() {
+    protected String getUserId() {
         return request.getAttribute(DemonConstants.Log.SenderId) == null ? "" : request.getAttribute(DemonConstants.Log.SenderId).toString();
     }
 
     /**
      * 获取请求中的userAgent
      */
-    protected String currentUserAgent() {
+    protected String getUserAgent() {
         return request.getHeader("User-Agent");
     }
 
@@ -42,7 +42,7 @@ public abstract class BaseService {
     /**
      * 获取请求中的ip
      */
-    protected String currentIp() {
+    protected String getIp() {
         return DemonTools.getIpAddr(request);
     }
 
