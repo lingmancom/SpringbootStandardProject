@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @OpenAPIDefinition(servers = { @Server(url = "/", description = "Default Server URL") })
-@MapperScan(basePackages = { "com.lm.springbootstandardproject.models.entity.mapper" })
+@MapperScan(basePackages = { "com.lm.springbootstandardproject.models.entity.mapper", "com.lm.springbootstandardproject.mappers"})
 @EnableAsync
 @ComponentScan(basePackages = {"com.lm"})
 public class AppApplication {
