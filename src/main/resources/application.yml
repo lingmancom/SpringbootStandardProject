@@ -1,8 +1,10 @@
 lm:
   host: lm
-  project: xxx
-  user-api-log: false
-
+  project: XXXX
+  use-front-api-log: false
+  use-back-api-log: false
+  api-log-config:
+    log-endpoint: cn-shanghai.log.aliyuncs.com
 app:
   test: test
 

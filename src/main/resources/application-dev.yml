@@ -1,5 +1,6 @@
 lm:
-  user-api-log: false
+  use-front-api-log: true
+  use-back-api-log: true
 
 
 app:

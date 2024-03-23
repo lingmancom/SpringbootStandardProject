@@ -27,25 +27,24 @@ import java.util.Arrays;
 @ComponentScan(basePackages = {"com.lm"})
 public class AppApplication {
 
-
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(AppApplication.class, args);
-        var lmConfig = applicationContext.getBean(LmConfig.class);
-        var appConfig = applicationContext.getBean(AppConfig.class);
+        LmConfig lmConfig = applicationContext.getBean(LmConfig.class);
+        AppConfig appConfig = applicationContext.getBean(AppConfig.class);
         DemonProjectConfig.project = lmConfig.getProject();
-        DemonProjectConfig.useApiLog = lmConfig.getUseApiLog();
+        DemonProjectConfig.useFrontApiLog = lmConfig.getUseFrontApiLog();
+        DemonProjectConfig.useBackApiLog = lmConfig.getUseBackApiLog();
         Environment environment = new AnnotationConfigApplicationContext().getEnvironment();
         // 获取当前活动的 profiles
         var activeProfiles = Arrays.asList(environment.getActiveProfiles());
-        if (activeProfiles.size() > 0) {
+        if (!activeProfiles.isEmpty()) {
             DemonProjectConfig.environment = ENV.valueOf(activeProfiles.get(0));
         } else {
             DemonProjectConfig.environment = ENV.valueOf("prod");
         }
 
         DemonProjectConfig.initLogConsumer();
-        System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/swagger-ui/index.html");
-
+        System.out.println("项目地址：http://localhost:" + appConfig.getPort() + "/doc.html");
     }
 
     @Bean

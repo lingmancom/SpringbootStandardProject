@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "lm")
 public class LmConfig {
-    @Value("${lm.project}")
     private String project;
 
-    @Value("${lm.user-api-log}")
-    private Boolean useApiLog;
+    private Boolean useFrontApiLog = false;
+
+    private Boolean useBackApiLog = false;
+
+    private String logEndpoint =  "cn-shanghai.log.aliyuncs.com";
 }
 
 
