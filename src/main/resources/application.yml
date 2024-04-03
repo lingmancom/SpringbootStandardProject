@@ -5,6 +5,14 @@ lm:
   use-back-api-log: false
   api-log-config:
     log-endpoint: cn-shanghai.log.aliyuncs.com
+  # 配置备份
+  backup:
+    enabled: true
+
+# 配置接口文档
+knife4j:
+  enable: true
+
 app:
   test: test
 
@@ -67,5 +75,3 @@ mybatis-plus:
     map-underscore-to-camel-case: false
     call-setters-on-nulls: true
 
-swagger:
-  enabled: true

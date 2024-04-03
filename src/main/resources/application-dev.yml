@@ -1,7 +1,9 @@
 lm:
   use-front-api-log: true
   use-back-api-log: true
-
+  # 开发环境默认不开启备份
+  backup:
+    enabled: false
 
 app:
   test: test-application-dev
