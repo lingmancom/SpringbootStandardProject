@@ -1,5 +1,6 @@
 package com.lm.springbootstandardproject.controllers;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.lm.tools.DemonConstants;
 import com.lm.tools.DemonTools;
 import jakarta.annotation.Resource;
@@ -20,7 +21,7 @@ public abstract class BaseController {
      */
 
     protected String getToken() {
-        return request.getHeader("token") == null ? "" : request.getHeader("token");
+        return StpUtil.getTokenValue();
     }
 
 
@@ -28,7 +29,7 @@ public abstract class BaseController {
      * 获取请求中的userId
      */
     protected String getUserId() {
-        return request.getAttribute(DemonConstants.Log.SenderId) == null ? "" : request.getAttribute(DemonConstants.Log.SenderId).toString();
+        return StpUtil.getLoginIdAsString();
     }
 
     /**

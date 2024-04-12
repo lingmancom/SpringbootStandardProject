@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,7 @@ import java.util.Arrays;
 @MapperScan(basePackages = { "com.lm.springbootstandardproject.models.entity.mapper", "com.lm.springbootstandardproject.mappers"})
 @EnableAsync
 @ComponentScan(basePackages = {"com.lm"})
+@EnableCaching
 public class AppApplication {
 
     public static void main(String[] args) {

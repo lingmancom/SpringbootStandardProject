@@ -1,6 +1,8 @@
 package com.lm.springbootstandardproject.core.config;
 
 
+import cn.dev33.satoken.exception.NotLoginException;
+import cn.dev33.satoken.exception.NotPermissionException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lm.tools.DemonConstants;
@@ -69,4 +71,19 @@ public class GlobalExceptionHandler {
         log.error(ex.getMessage());
         return R.errorCode(ex);
     }
+
+    @ExceptionHandler(value = NotLoginException.class)
+    public R<Object> exceptionHandler(NotLoginException e) {
+        log.error(e.getMessage());
+        return R.errorNoAuth("请先登录");
+    }
+
+    @ExceptionHandler(value = NotPermissionException.class)
+    public R<Object> exceptionHandler(NotPermissionException e) {
+        log.error(e.getMessage());
+        // TODO 需要修改code给403
+        return R.error("没有权限");
+    }
+
+
 }

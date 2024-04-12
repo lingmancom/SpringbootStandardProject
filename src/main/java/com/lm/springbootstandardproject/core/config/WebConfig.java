@@ -1,6 +1,10 @@
 package com.lm.springbootstandardproject.core.config;
 
+import cn.dev33.satoken.interceptor.SaInterceptor;
+import cn.dev33.satoken.stp.StpUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lm.springbootstandardproject.core.common.JacksonObjectMapper;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,15 +17,17 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private TokenInterceptor jwtInterceptor;
+    @Resource
+    ObjectMapper objectMapper;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 多个拦截器组成一个拦截器链
-        // addPathPatterns 用于添加拦截规则，/**表示拦截所有请求
-        // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns();
+        // 默认放行
+        registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
+                .addPathPatterns("/**")
+                .excludePathPatterns("/v3/api-docs/**", "/__inspector__", "/doc.html", "/api/system/version", "/api/account/login")
+                .excludePathPatterns("/**/css/**", "/**/js/**", "/favicon.ico")
+                .excludePathPatterns("/api/base/**");
     }
 
     /**
