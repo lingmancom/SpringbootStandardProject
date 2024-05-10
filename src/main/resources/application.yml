@@ -75,6 +75,12 @@ mybatis-plus:
     map-underscore-to-camel-case: false
     call-setters-on-nulls: true
 
+minio:
+  endpoint: http://data:9000
+  accessKey: xxx
+  secretKey: xxx
+  bucketName: xxx
+
 sa-token:
   # token 名称（同时也是 cookie 名称）
   token-name: Token
