@@ -11,8 +11,7 @@ module.exports = {
     db: {
         url: 'jdbc:mysql://xx:3305/xx',
         username: 'xx',
-        password: 'xx',
-        name: 'xx',    // 数据库名
+        password: 'xx'
     },
 
 }
